@@ -1,0 +1,30 @@
+6
+f 3
+g 1
+G 2
+h 4
+m 7
+r 5
+20 20
+r g f G g h r f f r f g g g G g m G h m
+g f h h h m m m m g G m G h g f m m g h
+G h G h h m g r f h f h r h h r r h f f
+g r G g G m f G f h r f h m m G r r f g
+m r f g m G f r f g m g h m G G m r g G
+g m f g f g m m G f f h g g h r m r G f
+r G g h g g G r g f G g G m r f f G f G
+g h r g h f h r g f G m g f g r f r r m
+g r f f m f h h g g g G m m m G m f h f
+h r g f G G f G r g h G f G m m m r g G
+g h h g m h h G f h h h f m g r h G h h
+G m r r r G h f f G G m r h m h G r f g
+m G h h h f G g G G G f m h g r f f r m
+m r r r m h g f h m r g f G g f r f h f
+f g g f m h r h m r g G r G m m G r G f
+h g G m g r G f m m f r G G h g r f f h
+r r g G g h f g r G m m g h h m h r r r
+g r f f f m h G r g m r m g h f h h G g
+G m m G r r r f m r G G g G h h G g f m
+f g f f m r h m r h g m f G h r m G h f
+3 3
+17 18

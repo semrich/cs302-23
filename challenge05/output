@@ -1,0 +1,23 @@
+In Graph 1 there is a path from A to B
+In Graph 1 there is no path from B to A
+
+In Graph 2 there is a path from A to B
+In Graph 2 there is a path from A to C
+In Graph 2 there is a path from B to C
+In Graph 2 there is no path from C to B
+
+In Graph 3 there is no path from A to C
+In Graph 3 there is a path from C to A
+In Graph 3 there is a path from C to D
+In Graph 3 there is no path from D to C
+
+In Graph 4 there is a path from A to D
+In Graph 4 there is a path from C to E
+In Graph 4 there is no path from E to C
+In Graph 4 there is a path from D to E
+
+In Graph 5 there is no path from E to C
+In Graph 5 there is a path from C to E
+In Graph 5 there is a path from A to B
+In Graph 5 there is no path from A to D
+In Graph 5 there is a path from D to A

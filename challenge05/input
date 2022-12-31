@@ -1,0 +1,52 @@
+1
+A B
+2
+A B
+B A
+3
+A B
+A C
+B C
+4
+A B
+A C
+B C
+C B
+4
+A B
+C A
+C B
+B D
+4
+A C
+C A
+C D
+D C
+7
+A E
+B E
+A B
+A C
+C B
+B D
+D C
+4
+A D
+C E
+E C
+D E
+8
+A E
+E B
+B A
+C A
+D B
+D C
+C F
+F D
+5
+E C
+C E
+A B
+A D
+D A
