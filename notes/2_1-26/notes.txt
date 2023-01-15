@@ -1,0 +1,116 @@
+Review of passing by reference vs. value
+--------------------------------
+
+You have two options to receive a variable from another function
+
+void getValue (Foobar value);   // passed by value
+
+void getValue (Foobar &value);  // passed by reference
+
+In the first case C++ will make a copy of the passed variable using
+the copy constructor we briefly discussed (and will discuss again
+below)
+
+In the second case C++ will give you a variable that looks and smells
+like a typical variable (no pointer!) but is actually the same memory
+location of the passed variable.
+
+This implies that if you modify value, it also will modify the
+original variable
+
+By and large passing by reference and value are equivelent... with
+passing by reference being more efficient (no copying involved)  There
+is one exception though....
+
+Review of the rule of 3 (dynamic memory allocation):
+-----------------------------------------
+
+Sometimes you want to have an array that can be dynamically changed.
+In C++ we will achieve this using pointers and the "new" operator.  An
+example from the 1/10 lecture is something like this:
+
+Class Rectangles {
+...
+private:
+
+	Rectangle * arr;
+};
+
+Which requires three elements:
+
+1.)  A constructor that allocates this memory like this:
+
+arr = new Rectangle[numRectangles];
+
+2.)  A deconstructor that deallocates (cleans up) like this:
+
+delete [] arr;
+
+3.)  A copy constructor that we will review in much more gory detail
+next week.
+
+Friends 
+--------
+
+A friend function/class is a function/class defined outside of a given class' scope,
+but given access to non-public (and public) data / functions.
+
+Friend functions are not member functions, but rather functions you
+are comfortable letting modify data.  In general friends are bad
+except for a few choice examples we will discuss throughout the semester.  
+
+Friend functions can enhance performance as member can be accessed directly.
+
+Although friends can be placed anywhere, it is preferred practice they
+be placed at the top of the class definition before the "public:"
+specifier like this:
+
+friend void setX();
+friend class CoolClass;
+
+NOTE:  friendship is given not taken, therefore it is neither symmetric or transitive.
+For example, if B is a friend of A, A is not necessarily a friend of B.  Likewise,
+C is not automatically a friend of A if B is a friend of A and C is a friend of B.
+
+
+Final note:  it is good practice to place friend definitions first in
+your code even though public, private, and protected do not constrain
+them (see text).
+
+
+Review of overloading
+------------------------
+
+As alluded to so far, C++ is a very type-centric language where the 
+programmer is given the ability to make their own classes.
+
+Overloading is a mechanism where c++ operators (e.g., +) can be
+used with objects.
+
+Some general rules:
+-------------------
+
+1.)  you can not make a new symbol/operator
+2.)  some operators can not be overloaded (see the text)
+3.)  to make your code easy to read, the function should mimic the C++
+      operator.  For example, "+" means addition, etc.
+
+Overloading can be done using global functions or non-static member functions.  
+Some operators like [] must be a member function.  Others (like << and >>) 
+should be a global function as we can not modify the classes involved (review)
+
+No implicit overloading.  "+" and "+=" are different operators
+
+
+Global vs. Class members
+------------------------
+
+1.)  If a operator function is a member function, the left (or only) operand must
+      be an object of that class
+2.)  If the left operand is not an object or is an unmodifiable object (e.g., ostream),
+      we will implement these as global functions
+
+NOTE:  operator functions are often made friends to improve performance, as
+if they are a friend they can access data directly.
+
+

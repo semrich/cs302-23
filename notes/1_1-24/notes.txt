@@ -1,0 +1,182 @@
+Dr. Scott
+Lecture date:  8/19/21
+----------------
+
+Pre/concurrent reading:
+
+* Chapter 1 in M & S briefly reviews specification, design, analysis, testing
+  and debugging.  These should not be new to you but still  make sure you look 
+  over the C++ intro (first few pages) and the subsection on Big-Oh notation.  
+  We likely will not specifically cover assertions and exception handling 
+  Discussed in the middle of the chapter but  these are good to know about.
+
+* If you haven’t already, you must read at least M&S section 2.1 (classes and 
+  members), 2.3 (placing class in a separate file), 2.4 (separating interface 
+  from implementation). 
+
+  If you don’t understand after(re)reading the above please ask a question 
+  on Piazza or during your lab period.
+
+--
+
+Overview of today/Chapter 2:
+
+* Public vs. private functions/data members
+
+* Brief discussion of separating interface from implementation
+
+* NOTE! Only member functions should modify data members (we'll
+cover rare exceptions later in the semester). This is also known as
+encapsulation / data hiding throughout the text/this semester
+
+
+Class refresher (moving into next week if needed)
+——————————————
+
+"Composite types" contain multiple elements.  In the C programming
+language, to which you will be introduced later, it uses a struct to
+group multiple variables, or pieces of data, together.
+
+As you likely learned in CS140, in C++ classes can contain multiple
+variables, and functions too.  Over the next few weeks we will call
+these data  "data members" and the functions  "member functions".
+
+Car analogy/code - gas pedal, brake, and steering wheel hide the 
+complexity of what actually makes the car go, stop and turn, 
+respectively.  We aim in this course to build reusable
+pieces of software that are complicated in the inside but easy 
+to use via its interfaces.  In a sense, this is also idea for a 
+course that is a very high-level look at "abstract data types", 
+or ADTs, that describe common data structures and algorithms. 
+"Push" and "pop", for example, are stack operations that can be 
+Developed in any underlying computer language: C, C++, Java, 
+Pascal (yes, I am that old), etc.
+
+C++ and its classes in particular are useful because it by design 
+uses Objects to hide all the "gory" details.   In general, "real 
+world" projects can involve hundreds (or even thousands!!) of classes 
+and the standard template library (STL) and newer effort such as 
+the Boost library maximize code reuse by the programming community.
+
+Now the bad news; as groovy as classes are, we often need to build 
+them from scratch during the semester.  Some classes come prebuilt.  
+Others like the Car class we will design today we need to construct. 
+
+Like CS140 and the newly rebooted CS102, the programs you develop
+will in general have a handful of classes and files: 
+
+*  Each class will be defined in a header file (a .h file)
+
+*  The member functions will be defined in a separate file (a .cpp file)
+
+*  You will compile your programs using a makefile (see directory 
+   for an example)
+
+
+Remember, classes enable a C++ program to model objects:
+-  Attributes (data members)
+-  Behaviors or operators (member functions)
+
+C++ is *extensible* because we can develop classes with cool features, 
+and such features are often termed user-defined types (unlike the 
+defaults like int)
+
+Each object, just like each car or anything we think of, has its own data.  
+The functions themselves are shared, but that is for another day. BY DEFAULT, 
+all members of a class are private unless specifically denoted 
+by "public"
+
+The main reason is functions and data should be private unless it can be 
+shown the main function must use them, and in practice this is a pretty high
+bar for C++ programmers (unlike in C).  Data members are typically private 
+because we want to "hide" these from the program accessing them.  This is 
+called data hiding.
+
+Any function not needed by  the main function should also be made private.  
+Although you may interchange public and private designations, it is considered 
+good practice to group all of the public elements first followed by private 
+elements.
+
+Any function that *sets* data members are sometimes called mutators.  
+We’ll call these set functions.
+
+Similarly, any function that reads information stored in private 
+data members are sometimes called accessors.  We’ll call these 
+get functions.
+
+
+A quick review of constructors:
+---------------------------
+
+Constructors are special functions that initialize the values of data 
+members.  Constructors are often placed before other functions after the 
+"public" designation.
+
+Just like member functions, constructors can be "overloaded" i.e., 
+different constructors based on different prototypes.  The compiler 
+is smart enough to figure out which one to use based on the arguments.
+
+Data members can not be initialized where they are defined.  So there are two options:
+
+1.)  Use a constructor with hard-coded default values
+
+2.)  Specify default parameters in a construction as follows in the prototype:
+
+Time (int= 0, int = 0, int = 0);
+
+and in the constructor:
+
+Time::Time (int h, int m, int s) {
+ 
+    ...
+
+}
+
+Scope
+-----
+
+Data members are at "class scope" i.e., they can be seen in the class but not 
+elsewhere.  These are equivalent to global variables for the class.
+
+Nonmember functions placed outside of a class are at file scope depending 
+on their location.  For example, a function outside of a class in the main 
+program can be seen by all classes if desired.  This is generally not needed, 
+as most assignments will be contained completely in a class.  
+
+Variables in a member function have block scope, just as they do in other 
+functions
+
+Scope, combined with constructors and set/get functions often lead to 
+smaller programs/function calls.  For example, all initialization is taken 
+care of by the constructor and all validation/error checking can be done 
+by the get/set functions, eliminating the need to do these in the member 
+functions.  Further, because data members have class scope, they do not 
+have to be provided as arguments to member functions.
+
+
+Deconstructors
+------------
+
+Deconstructors are used when variables go out of scope and clean up
+the trash automatically.  You don't often need them 
+if your class does not have dynamically allocated memory as
+fundamental types (e.g., int, array) have their own deconstructors.
+
+Deconstructors are deliminated by the ~ character preceding the name 
+of the class
+
+Deconstructors can not be overloaded and do not return values.
+Just like constructors, a default empty deconstructor exists.  You 
+should replace it, however, for "clean up" operations as needed 
+(e.g., freeing allocated memory).
+
+C++ has "new" instead of "malloc," and "delete" instead of "free".
+
+Whenever you use new/delete you need a constructor and deconstructor.
+We'll cover this in lab this week.
+
+In general, deconstructors are run in the order of the original constructor calls
+
+** cookie example **
+
+** Monty Python example for static **
