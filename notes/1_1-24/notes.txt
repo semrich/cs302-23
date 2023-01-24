@@ -1,5 +1,5 @@
 Dr. Scott
-Lecture date:  8/19/21
+Lecture date:  1/24/23
 ----------------
 
 Pre/concurrent reading:
@@ -10,8 +10,8 @@ Pre/concurrent reading:
   We likely will not specifically cover assertions and exception handling 
   Discussed in the middle of the chapter but  these are good to know about.
 
-* If you haven’t already, you must read at least M&S section 2.1 (classes and 
-  members), 2.3 (placing class in a separate file), 2.4 (separating interface 
+* If you are new to UTK, I highly recommend that you must read at least M&S section 2.1 
+  (classes and members), 2.3 (placing class in a separate file), 2.4 (separating interface 
   from implementation). 
 
   If you don’t understand after(re)reading the above please ask a question 
@@ -19,7 +19,7 @@ Pre/concurrent reading:
 
 --
 
-Overview of today/Chapter 2:
+Overview of today/review of 202:
 
 * Public vs. private functions/data members
 
@@ -37,7 +37,7 @@ Class refresher (moving into next week if needed)
 language, to which you will be introduced later, it uses a struct to
 group multiple variables, or pieces of data, together.
 
-As you likely learned in CS140, in C++ classes can contain multiple
+As you learned in CS202, in C++ classes can contain multiple
 variables, and functions too.  Over the next few weeks we will call
 these data  "data members" and the functions  "member functions".
 
@@ -62,8 +62,8 @@ Now the bad news; as groovy as classes are, we often need to build
 them from scratch during the semester.  Some classes come prebuilt.  
 Others like the Car class we will design today we need to construct. 
 
-Like CS140 and the newly rebooted CS102, the programs you develop
-will in general have a handful of classes and files: 
+Like CS202, the programs you develop will in general have a handful 
+of classes and files: 
 
 *  Each class will be defined in a header file (a .h file)
 
