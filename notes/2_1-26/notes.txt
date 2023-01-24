@@ -27,7 +27,7 @@ Review of the rule of 3 (dynamic memory allocation):
 
 Sometimes you want to have an array that can be dynamically changed.
 In C++ we will achieve this using pointers and the "new" operator.  An
-example from the 1/10 lecture is something like this:
+example from lecture is something like this:
 
 Class Rectangles {
 ...
