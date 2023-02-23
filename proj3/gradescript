@@ -1,0 +1,56 @@
+#!/bin/sh 
+
+dir=/home/jplank/cs302/Labs/Lab5
+ge="$dir/Gradescript-Examples"
+
+if [ $# -ne 1 ]; then
+  echo 'usage: gradescript problem_number (1-100)' >&2
+  exit 1
+fi
+
+if [ "$1" -gt 0 -a "$1" -le 100 ]; then
+  enum=`echo $1 | awk '{ printf "%03d\n", $1 }'`
+else
+  echo 'usage: gradescript problem_number (1-100)' >&2
+  exit 1
+fi
+  
+program=bin/sb-analyze
+  
+if [ ! -f $program ]; then
+  echo "Problem $enum is incorrect."
+  echo ""
+  echo "Your program $program does not exist."
+  exit 0
+fi
+
+rm -f tmp-$enum-test-stdout.txt tmp-$enum-test-stderr.txt tmp-$enum-check-stdout.txt tmp-$enum-check-stderr.txt
+
+./$program `cat $ge/$enum.cli` < $ge/$enum.txt > tmp-$enum-test-stdout.txt 2> tmp-$enum-test-stderr.txt
+call="./$program "`cat $ge/$enum.cli`" < $ge/$enum.txt"
+
+$dir/bin/sb-grade `cat $ge/$enum.cli` $ge/$enum.txt < tmp-$enum-test-stdout.txt > tmp-$enum-check-stdout.txt 2> tmp-$enum-check-stderr.txt
+
+o=`wc tmp-$enum-check-stdout.txt | awk '{ print $1 }'`
+e=`wc tmp-$enum-check-stderr.txt | awk '{ print $1 }'`
+if [ $o -ne 0 -o $e -ne 0 ]; then
+  echo "Problem $enum is incorrect."
+  echo ""
+  echo "TEST:"
+  echo ""
+  echo "$call"
+  echo ""
+  echo "FILES:"
+  echo ""
+  echo "Your standard output is in tmp-$enum-test-stdout.txt."
+  echo "Your standard error  is in tmp-$enum-test-stderr.txt."
+  echo ""
+  echo "To see the problem, run $dir/bin/sb-grade `cat $ge/$enum.cli` $ge/$enum.txt < tmp-$enum-test-stdout.txt"
+  echo ""
+  echo "Please remember to delete this files when you are finished."
+else 
+  echo "Problem $enum is correct."
+  echo ""
+  echo "Test: $call" 
+  rm -f tmp-$enum-test-stdout.txt tmp-$enum-test-stderr.txt tmp-$enum-check-stdout.txt tmp-$enum-check-stderr.txt
+fi
