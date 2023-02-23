@@ -1,14 +1,19 @@
-all: sb-play sb-read sb-analyze
+EXECUTABLES = bin/sb-read bin/sb-analyze bin/sb-play 
+CPP = g++
+PDS = plank-disjoint-sets
+INCLUDE = -I$(PDS)/include
+CFLAGS = -Wall -Wextra
 
-sb-play: sb-play.cpp
-	g++ -std=c++11 -O3 -o sb-play sb-play.cpp disjoint-rank.cpp
+all: $(EXECUTABLES)
 
-sb-read: sb-read.cpp
-	g++ -std=c++11 -O3 -o sb-read sb-read.cpp disjoint-rank.cpp
-
-sb-analyze: sb-analyze.cpp
-	g++ -std=c++11 -O3 -o sb-analyze sb-analyze.cpp disjoint-rank.cpp
-
-.PHONY: clean
 clean:
-	rm -rf sb-play sb-read sb-analyze
+	rm -f bin/*
+
+bin/sb-read: src/sb-read.cpp
+	$(CPP) -o bin/sb-read src/sb-read.cpp
+
+bin/sb-analyze: src/sb-analyze.cpp $(PDS)/obj/disjoint_set.o
+	$(CPP) $(CFLAGS) $(INCLUDE) -o bin/sb-analyze src/sb-analyze.cpp $(PDS)/obj/disjoint_set.o
+
+bin/sb-play: src/sb-play.cpp $(PDS)/obj/disjoint_set.o
+	$(CPP) $(CFLAGS) $(INCLUDE) -o bin/sb-play src/sb-play.cpp $(PDS)/obj/disjoint_set.o
