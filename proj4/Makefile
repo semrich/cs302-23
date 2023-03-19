@@ -17,13 +17,13 @@ test:		test-output test-memory
 
 test-output:	src/dijkstras
 	@echo Testing output 0...
-	@cat data/input0.txt <(./src/dijkstras < data/input0.txt) | ~tmn678/public/checkproj4 data/output0.txt
+	@./src/dijkstras < data/input0.txt | ~semrich/Public/checkproj4 data/input0.txt data/output0.txt
 	@echo Testing output 1...
-	@cat data/input1.txt <(./src/dijkstras < data/input1.txt) | ~tmn678/public/checkproj4 data/output1.txt
+	@./src/dijkstras < data/input1.txt | ~semrich/Public/checkproj4 data/input1.txt data/output1.txt
 	@echo Testing output 2...
-	@cat data/input2.txt <(./src/dijkstras < data/input2.txt) | ~tmn678/public/checkproj4 data/output2.txt
+	@./src/dijkstras < data/input2.txt | ~semrich/Public/checkproj4 data/input2.txt data/output2.txt
 	@echo Testing output 3...
-	@cat data/input3.txt <(./src/dijkstras < data/input3.txt) | ~tmn678/public/checkproj4 data/output3.txt
+	@./src/dijkstras < data/input3.txt | ~semrich/Public/checkproj4 data/input3.txt data/output3.txt
 
 test-memory:	src/dijkstras
 	@echo Testing memory...
